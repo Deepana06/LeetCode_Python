@@ -183,4 +183,195 @@ class Solution(object):
                 
         return(result)
             
+        
+           
+#14. Longest Common Prefix
+
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        s=sorted(strs)
+        first_string=s[0]
+        last_string=s[len(s)-1]
+        common_string=[]
+
+        i=0
+        while i<len(first_string)+1:
+
+            if first_string[0:i]==last_string[0:i]:
+                common_string.append(first_string[0:i])
+        
+            i=i+1
+
+        return (max(common_string))
+        
+#20. Valid Parentheses      
+class Solution:
+    def isValid(self, s: str) -> bool:
+        r=[]
+        result=True
+        for i in s:
+            if i=='(':
+                r.append('(')
+            elif i==')':
+                if r and r[-1]=='(':
+                    r.pop()
+                else:
+                    result=False
+            elif i=='[':
+                r.append('[')
+            elif i==']':
+                if r and r[-1]=='[':
+                    r.pop()
+                else:
+                    result=False
+            elif i=='{':
+                r.append('{')
+            elif i=='}':
+                if r and r[-1]=='{':
+                    r.pop()
+                else:
+                    result=False
+        
+        if r != [] or not result:
+            result = False
+        else:
+            result = True
+
+        return (result)
+        
+#26. Remove Duplicates from Sorted Array
+
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        n=len(nums)
+        j=1
+        for i in range(1,n):
+            if nums[i]!=nums[i-1]:
+                nums[j]=nums[i]
+
+                j=j+1
+    
+        return j
+  
+# 27. Remove Element
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        n=len(nums)
+        j=0
+        for i in range(n):
+            if nums[i]!=val:
+                nums[j]=nums[i]
+
+                j=j+1
+
+        return(j)     
+
+#28. Find the Index of the First Occurrence in a String
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        n=len(needle)
+        ix=[]
+
+        for i in range(0,len(haystack)):
+            if(haystack[i:i+n]==needle):
+                ix.append(i)
+        
+        if ix==[]:
+            ix1=-1
+        else:
+            ix1=min(ix)
+
+        return(ix1)
+
+#35. Search Insert Position   
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        nums.append(target)
+        nums.sort()
+        i=0
+        result_index=0
+        
+        for i in range(len(nums)):
+            if nums[i]==target:
+                result_index=i
+                break
+
+        return(result_index)
+        
+#58. Length of Last Word
+class Solution:
+    def lengthOfLastWord(self, s: str) -> int:
+        s=s.lstrip()
+        s=s.rstrip()
+        s=s[::-1]
+        position=s.find(" ")
+        r=[]
+        if position>0:
+            for i in range(0,position):
+                r.append(s[i])
+        else:
+            for i in range(0,len(s)):
+                r.append(s[i])
+                
+        return(len(r))
+
+#66. Plus One
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        digit=""
+        r=[]
+        for i in range(len(digits)):
+            digit=digit+str(digits[i])
+        
+        digit=int(digit)+1
+        
+        for i in str(digit):
+            r.append(int(i))
+
+        return(r)
+        
+#3. Longest Substring Without Repeating Characters
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        left=0
+        i=0
+        n=len(s)
+        right=0
+        max_l=0
+
+        while left<n:
+            r=[]
+            right=left
+            while right<n and s[right] not in r:
+                r.append(s[right])
+                right=right+1
+
+            max_l=max(max_l,right-left)
+            left=left+1
+        
+        return(max_l)
+#5. Longest Palindromic Substring
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        right=0
+        left=0
+        n=len(s)
+        max_l=0
+        r=[]
+        p=""
+
+        while left<n:
+            right=left
+            while right<n:
+                r=s[left:right+1] 
+                if r==r[::-1]and len(r)>max_l:
+                    max_l=len(r)
+                    p=r
+                right=right+1
+            left=left+1
+
+        return (p)
+        
+
+                    
             
