@@ -412,6 +412,22 @@ def p12():
     result=''.join(total)
     print(result)
 
+#121 Best Time to buy stock
+
+def p13():
+    prices = [7,1,5,3,6,4]
+    min_stock=min(prices)
+    min_stock_range=0
+    max_stock=0
+    for i in range(len(prices)-1):
+        if min_stock>=prices[i]:
+            min_stock_range=i
+    max_value=prices[min_stock_range]
+    for i in range(min_stock_range,len(prices)-1):
+        if prices[min_stock_range]<prices[i]:
+            max_value=prices[i]
+
+    print(max_value-prices[min_stock_range])
 
       
 
