@@ -371,7 +371,49 @@ class Solution:
             left=left+1
 
         return (p)
+
+#67.Add Binary
+def p12():
+    a="11"
+    b="11"
+    carry=0
+    n=max(len(a),len(b))
+    a_v=""
+    b_v=""
+    total=[]
+    i=n-1
+
+    if len(a)>len(b):
+        diff=len(a)-len(b)
+        b='0'*diff+b
+    elif len(a)<len(b):
+        diff=len(b)-len(a)
+        a='0'*diff+a
+
+
+    while i>=0:
         
+        if i<len(a):
+            a_v=a[i]
+       
+        if i<len(b):
+            b_v=b[i]
+        
+
+        sum=(int(a_v) + int(b_v))+carry
+        carry=sum//2
+        total.append(str(sum%2))
+        i=i-1
+    
+    if carry:
+        total.append(str(carry))
+
+    total.reverse()
+    result=''.join(total)
+    print(result)
+
+
+      
 
                     
             
